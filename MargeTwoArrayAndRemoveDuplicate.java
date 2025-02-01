@@ -1,28 +1,60 @@
-package com.demo;
-
-import java.util.Arrays;
+package DSA;
 
 public class MargeTwoArrayAndRemoveDuplicate {
+    public static void main(String[] args) {
+        int[] a = {1, 1, 2, 2, 3, 3};
+        int[] b = {9, 8, 7, 9, 8, 7};
+        int[] c = merg(a, b);
+        // duplicate(c);
+        sort(c);
+        for (int n : c) {
+            System.out.println(n);
+        }
 
-	public static void main(String[] args) {
-		int[] a = { 5, 4, 9, 8, 2, 1 };
-		int[] b = { 7, 0, 3, 4, 5, 8, 9, 1 };
-		int[] result = RemoveDuplicate(a, b);
-		System.out.println(Arrays.toString(result));
-	}
+    }
 
-	public static int[] RemoveDuplicate(int[] a, int[] b) {
-		int[] c = new int[a.length + b.length];
-		System.arraycopy(a, 0, c, 0, a.length);
-		System.arraycopy(b, 0, c, a.length, b.length);
-		Arrays.sort(c);
-		int index = 0;
-		for (int i = 0; i < c.length; i++) {
-			if (i == 0 || c[i] != c[i - 1]) {
-				c[index++] = c[i];
-			}
-		}
-		return Arrays.copyOf(c, index);
-	}
+    static int[] merg(int[] a, int[] b) {
+        int[] c = new int[a.length + b.length];
+        int index = 0;
 
+        for (int i = 0; i < a.length; i++) {
+            c[index++] = a[i];
+        }
+        for (int i = 0; i < b.length; i++) {
+            c[index++] = b[i];
+        }
+        return c;
+    }
+
+//    static void duplicate(int[] a) {
+//        int index = 0;
+//        for (int i = 0; i < a.length; i++) {
+//            boolean duplicate = false;
+//            for (int j = 0; j < index; j++) {
+//                if (a[j] == a[i]) {
+//                    duplicate = true;
+//                    break;
+//                }
+//            }
+//
+//            if (!duplicate) {
+//                a[index++] = a[i];
+//            }
+//        }
+//        for (int i = 0; i < index; i++) {
+//            System.out.println(a[i]);
+//        }
+//    }
+
+    static void sort(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            int key = a[i];
+            int j = i - 1;
+            while (j >= 0 && a[j] > key) {
+                a[j + 1] = a[j];
+                j--;
+            }
+            a[j + 1] = key;
+        }
+    }
 }
