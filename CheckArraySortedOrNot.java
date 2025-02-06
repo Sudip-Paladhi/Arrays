@@ -1,34 +1,27 @@
-package DSA;
+package Prac;
 
 public class CheckArraySortedOrNot {
-
-
     public static void main(String[] args) {
-        int[] a = {8, 7, 6, 5, 4, 3, 2, 1, 41};
-        if (Sorted(a)) {
-            System.out.println("Given array is : Sorted");
+        int[] a = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+        if (isSorted(a)) {
+            System.out.println("Sorted Array");
         } else {
-            System.out.println("Given array is : Not sorted");
+            System.out.println("unsorted array");
         }
     }
 
-    static boolean Sorted(int[] a) {
-        boolean assending = true;
+    static boolean isSorted(int[] a) {
+        boolean assending = true, desending = true;
+
         for (int i = 0; i < a.length - 1; i++) {
             if (a[i] > a[i + 1]) {
                 assending = false;
-                break;
+            }
+
+            if (a[i] < a[i + 1]) {
+                desending = false;
             }
         }
-        boolean dessending = true;
-        if (!assending) {
-            for (int i = 0; i < a.length - 1; i++) {
-                if (a[i] < a[i + 1]) {
-                    dessending = false;
-                }
-            }
-            return dessending;
-        }
-        return assending;
+        return assending || desending;
     }
 }
